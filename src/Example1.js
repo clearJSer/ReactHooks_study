@@ -8,7 +8,7 @@ export default function Example() {
   const [work] = useState('engineer');
   useEffect(() => {
     console.log(`You clicked ${count} times ,${new Date().getTime()}`);
-  }, []);
+  }, [count]);
   function Index() {
     useEffect(() => {
       console.log('你来了老弟 Index页面');
@@ -25,7 +25,7 @@ export default function Example() {
       return () => {
         console.log('老弟你走了 ,List页面');
       };
-    });
+    }, []);
     return <h2>List-Page</h2>;
   }
   return (
