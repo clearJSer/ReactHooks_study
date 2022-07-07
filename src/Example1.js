@@ -6,8 +6,13 @@ export default function Example() {
   const [age] = useState(18);
   const [name] = useState('xxxx');
   const [work] = useState('engineer');
+  const obj = {a:1,b:2}
   useEffect(() => {
     console.log(`You clicked ${count} times ,${new Date().getTime()}`);
+    
+    const {a,b,c} = obj
+    console.log(a, b, c)
+    console.log(c.id)
   }, [count]);
   function Index() {
     useEffect(() => {
@@ -34,6 +39,8 @@ export default function Example() {
       <button
         onClick={() => {
           setCount(count + 1);
+
+
         }}
       >
         button

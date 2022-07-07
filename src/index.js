@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import Example1 from './Example1';
+import Example1 from './Example1';
 // import Example2 from './Example2';
 // import Example2 from './ReducerDemo';
 import Example6 from './Example6';
@@ -11,6 +11,7 @@ import Example8 from './useRef-example'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <>
+        <Example1/>
         <UseMemoExample />
         <Example6 />
         <Example8 />
