@@ -1,31 +1,36 @@
 /***
  * useMemo 使用教程
+ * 如果需要取消缓存：去掉第二个参数！！！面试被问到的
  */
-import React, { useState, useMemo } from 'react'
-export default function Example7() {
-    const [xiaohong, setXiaohong] = useState('小红待客状态')
-    const [zhiling, setZhiling] = useState('志玲待客状态')
-    return (
-        <>
-            <button onClick={() => { setXiaohong(new Date().getTime()) }}>小红</button>
-            <button onClick={() => { setZhiling(new Date().getTime() + ',志玲向我们走来了') }}>志玲</button>
-            <ChildComponent name={xiaohong}>{zhiling}</ChildComponent>
-        </>
-    )
-}
+import { useState, useMemo } from 'react'
 
-function ChildComponent({ name, children }) {
-    function changeName(name) {
-        console.log(name+'小红向我们走来了');
-        return name + '小红向我们走来了'
-    }
-    const actionName = useMemo(() => {changeName(name)}, [name])
-    // const actionName = changeName(name)
-    // 如果没有使用useMemo，触发志玲的更新也会导致changeName方法执行。有了useMemo 优化了性能 不会浪费计算资源
-    return (
-        <>
-            <div>{actionName}</div>
-            <div>{children}</div>
-        </>
-    )
+function App() {
+  const [count, setCount] = useState(0)
+  const [value, setValue] = useState('')
+
+  // const fcCount = () => {
+  //   //  出发setValue 都会更新这个log
+  //   console.log('hello react')
+  //   return count + 1
+  // }
+  const fcCount = useMemo(() => {
+    console.log('hello react')
+    return count + 1
+  })
+
+  return (
+    <div>
+      <p>count:{count}</p>
+      <p>fcCount: {fcCount}</p>
+      <button onClick={() => setCount(count + 1)}>add</button>
+      <br />
+      <input
+        value={value}
+        onInput={(e) => {
+          setValue(e.target.value)
+        }}
+      />
+    </div>
+  )
 }
+export default App

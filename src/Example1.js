@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+
 
 export default function Example() {
   const [count, setCount] = useState(0);
   const [age] = useState(18);
   const [name] = useState('xxxx');
   const [work] = useState('engineer');
-  const obj = {a:1,b:2}
+  const obj = { a: 1, b: 2 }
   useEffect(() => {
     console.log(`You clicked ${count} times ,${new Date().getTime()}`);
-    
-    const {a,b,c} = obj
+
+    const { a, b, c } = obj
     console.log(a, b, c)
-    console.log(c.id)
+    // console.log(c.id)
   }, [count]);
   function Index() {
     useEffect(() => {
@@ -24,23 +24,13 @@ export default function Example() {
     return <h2>JSPang.com</h2>;
   }
 
-  function List() {
-    useEffect(() => {
-      console.log(' 你来了老弟 List页面');
-      return () => {
-        console.log('老弟你走了 ,List页面');
-      };
-    }, []);
-    return <h2>List-Page</h2>;
-  }
+
   return (
     <div>
       <p>You clicked {count} times</p>
       <button
         onClick={() => {
           setCount(count + 1);
-
-
         }}
       >
         button
@@ -48,20 +38,7 @@ export default function Example() {
       <p>{name}</p>
       <p>{age}</p>
       <p>{work}</p>
-      <Router>
-        <ul>
-          <li>
-            <Link to="/">首页</Link>
-          </li>
-          <li>
-            <Link to="/list">列表页</Link>
-          </li>
-        </ul>
-        <Routes>
-          <Route path="/" exact element={<Index />} />
-          <Route path="/list" exact element={<List />} />
-        </Routes>
-      </Router>
+
     </div>
   );
 }
