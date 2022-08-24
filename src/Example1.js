@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-
+import NumberList from './components/NumberList'
 export default function Example() {
   const [count, setCount] = useState(0);
   const [age, setAge] = useState(18);
@@ -17,39 +16,37 @@ export default function Example() {
       console.log('离开')
     }
   }, []);
-  // function Index() {
-  //   useEffect(() => {
-  //     console.log('你来了老弟 Index页面');
-  //     return () => {
-  //       console.log('老弟你走了 ,Index页面');
-  //     };
-  //   }, []);
-  //   return <h2>JSPang.com</h2>;
-  // }
 
+  const changeCount = () => {
+    setCount(count + 1);
+  }
 
+  const changeAge = () => {
+    setAge(age + 1);
+  }
+  const getInfo = (value) => {
+    console.log(value)
+  }
   return (
     <div>
       <p>You clicked {count} times</p>
       <p>set {age}</p>
       <button
-        onClick={() => {
-          setCount(count + 1);
-        }}
+        onClick={changeCount}
       >
         button
       </button>
       <button
-        onClick={() => {
-          setAge(age + 1);
-        }}
+        onClick={changeAge}
       >
         AgeButton
       </button>
       <p>{name}</p>
       <p>{age}</p>
       <p>{work}</p>
-
+      <hr></hr>
+      <h2>NumberList 子组件</h2>
+      <NumberList numbers={[1, 2, 3, 4, 5, 6, 78, 9]} limitCount={10} logValue={getInfo} />
     </div>
   );
 }

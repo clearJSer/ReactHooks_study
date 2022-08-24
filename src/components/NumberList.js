@@ -3,23 +3,24 @@
 // 如果 numbers 的个数没有超过 limitCount，则完整输出；
 // 如果 numbers 的个数超过了 limitCount，则最后一行显示 ...，并通过 antd 组件的 Popover 显示完整的 numbers。
 // https://ant-design.gitee.io/components/popover-cn/?theme=compact#API
-import { Button, Popover } from 'antd';
+import React from 'react';
+// import { Button, Popover } from 'antd';
 export default function NumberList(props) {
   const { numbers, limitCount } = props
-  getAllRowData(param){
+  const getAllRowData = (param) => {
     return (
-      param.map(item => {
-        return <div>item</div>
+      param.map((item, index) => {
+        return <div key={index} onClick={(e) => {
+          props.logValue(e)
+        }}>{item}</div>
       })
     )
   }
-  getRow(){
-    const newArr = numbers.slice(limitCount)
+  const getRow = () => {
+    const newArr = numbers.slice(0, limitCount)
     newArr.push('...')
     return (
-      <Popover content={numbers} title="Title">
-        {getAllRowData(newArr)}
-      </Popover>
+      getAllRowData(newArr)
     )
   }
   return (
